@@ -1,6 +1,7 @@
 package userService.dao;
 
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,13 +23,9 @@ public class UserDAO {
 	public Connection getConnection() {
 		Connection conn = null;
 		try {
-			String driver = "com.mysql.jdbc.Driver";
-			String url = "jdbc:mysql://localhost:3306/webdb?serverTimezone=UTC";
-			String user = "root";
-			String password = "1234567890";
-			Class.forName(driver);
-			conn = DriverManager.getConnection(url,user,password);
-			
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/webdb?serverTimezone=UTC", "root",
+					"1234567890");
 		}catch(Exception e) {
 			System.out.println(e);
 			return null;
@@ -98,11 +95,10 @@ public class UserDAO {
 		PreparedStatement pstmt = null;
 		try {
 			conn = getConnection();
-			pstmt = conn.prepareStatement("insert into book values(?,?,?)");
-			pstmt.setInt(1, user.getId());
-			pstmt.setString(2, user.getName());
-			pstmt.setString(3, user.getEmail());
-			pstmt.setInt(4, user.getAge());
+			pstmt = conn.prepareStatement("insert into user(name,email,age) values(?,?,?)");
+			pstmt.setString(1, user.getName());
+			pstmt.setString(2, user.getEmail());
+			pstmt.setInt(3, user.getAge());
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("오류 발생 : " + e);
