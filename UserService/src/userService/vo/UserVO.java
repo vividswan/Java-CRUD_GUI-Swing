@@ -3,8 +3,8 @@ package userService.vo;
 public class UserVO {
 	private int id;
 	private String name;
-	private String email;
-	private int age;
+	private int birth;
+	private String number;
 	public int getId() {
 		return id;
 	}
@@ -17,17 +17,17 @@ public class UserVO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getEmail() {
-		return email;
+	public int getBirth() {
+		return birth;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setBirth(int birth) {
+		this.birth = birth;
 	}
-	public int getAge() {
-		return age;
+	public String getNumber() {
+		return number;
 	}
-	public void setAge(int age) {
-		this.age = age;
+	public void setNumber(String number) {
+		this.number = number;
 	}
 	
 	
