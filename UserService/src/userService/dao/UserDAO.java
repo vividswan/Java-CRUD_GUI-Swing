@@ -62,31 +62,58 @@ public class UserDAO {
 	}
 	
 	
-	public ArrayList<UserVO> userList() {
-		ArrayList<UserVO> list = new ArrayList<UserVO>();
+	public String[][] userList() {
+		ArrayList<String[]> list = new ArrayList<String[]>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		UserVO user = null;
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement("select * from user");
 			rs = pstmt.executeQuery();
-				while(!rs.next()) {
-				user = new UserVO();
-				user.setId(rs.getInt(1));
-				user.setName(rs.getString(2));
-				user.setEmail(rs.getString(3));
-				user.setAge(rs.getInt(4));
-				list.add(user);
+				while(rs.next()) {
+					list.add(new String[] {
+							Integer.toString(rs.getInt(1)),
+							rs.getString(2),
+							rs.getString(3),
+							Integer.toString(rs.getInt(4))
+					});
 				}
 		} catch (Exception e) {
 			System.out.println("오류 발생 : " + e);
 		} finally {
 			close(conn, pstmt, rs);
 		}
-		return list;
+		String[][] arr = new String[list.size()][4];
+		return list.toArray(arr);
+	}
+	
+	public String[][] findByName(String name) {
+		ArrayList<String[]> list = new ArrayList<String[]>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("select * from user where name like '%"+name+"%';");
+			rs = pstmt.executeQuery();
+				while(rs.next()) {
+					list.add(new String[] {
+							Integer.toString(rs.getInt(1)),
+							rs.getString(2),
+							rs.getString(3),
+							Integer.toString(rs.getInt(4))
+					});
+				}
+		} catch (Exception e) {
+			System.out.println("오류 발생 : " + e);
+		} finally {
+			close(conn, pstmt, rs);
+		}
+		String[][] arr = new String[list.size()][4];
+		return list.toArray(arr);
 	}
 	
 	
