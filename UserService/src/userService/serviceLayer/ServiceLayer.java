@@ -31,4 +31,14 @@ public class ServiceLayer {
 		String[][] list = dao.findByName(name);
 		return list;
 	}
+	
+	public boolean update(int id, String number) {
+		dao.update(id, number);
+		return true;
+	}
+	
+	public boolean delete(int id) {
+		dao.delete(id);
+		return true;
+	}
 }
