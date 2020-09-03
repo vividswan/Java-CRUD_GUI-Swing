@@ -2,13 +2,18 @@ package userService.gui;
 
 import java.awt.EventQueue;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
+
+import userService.serviceLayer.ServiceLayer;
+import userService.vo.UserVO;
 
 public class UserService {
 
@@ -88,6 +93,19 @@ public class UserService {
 				String nameValue = name.getText();
 				String emailValue = email.getText();
 				String ageValue = age.getText();
+				
+				if( nameValue.isEmpty() || emailValue.isEmpty() || ageValue.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "모두 작성해주세요.");
+				}
+				else {
+					UserVO user = new UserVO();
+					user.setName(nameValue);
+					user.setEmail(emailValue);
+					user.setAge(Integer.parseInt(ageValue));
+					
+					ServiceLayer serviceLayer = ServiceLayer.getInstance();
+					serviceLayer.userInsert(user);
+				}
 			}
 		});
 		
