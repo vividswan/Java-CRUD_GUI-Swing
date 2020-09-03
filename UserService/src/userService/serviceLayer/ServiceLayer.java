@@ -22,8 +22,13 @@ public class ServiceLayer {
 		return true;
 	}
 	
-	public ArrayList<UserVO> userList(){
-		ArrayList<UserVO> list = dao.userList();
+	public String[][] userList(){
+		String[][] list = dao.userList();
+		return list;
+	}
+	
+	public String[][] findByName(String name){
+		String[][] list = dao.findByName(name);
 		return list;
 	}
 }
