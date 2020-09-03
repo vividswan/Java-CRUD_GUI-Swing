@@ -1,21 +1,23 @@
-package userService.service;
+package userService.serviceLayer;
 
 import java.util.ArrayList;
+
 
 import userService.dao.UserDAO;
 import userService.vo.UserVO;
 
-public class UserService {
-	private static UserService service = new UserService();
+public class ServiceLayer {
+	private static ServiceLayer serviceLayer = new ServiceLayer();
+	
+	private ServiceLayer() { }
 	
 	public UserDAO dao = UserDAO.getInstance();
 	
-	private UserService() {}
-	private static UserService getInstance() {
-		return service;
+	public static ServiceLayer getInstance() {
+		return serviceLayer;
 	}
 	
-	public boolean UserInsert(UserVO user) {
+	public boolean userInsert(UserVO user) {
 		dao.userInsert(user);
 		return true;
 	}
