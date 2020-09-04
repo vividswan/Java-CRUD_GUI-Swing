@@ -195,6 +195,7 @@ public class UserService {
 				
 				ta.setText("");
 				String[][] arr = serviceLayer.findByName(val);
+				if(arr.length==0) JOptionPane.showMessageDialog(null, "해당되는 사용자가 없습니다.");
 				
 				ta.append("number"+"\t"+"name"+"\t"+"birth date"+"\t"+"phone number"+"\n");
 				ta.append("----------------------------------------------------------------------------------------------------------\n");
@@ -222,6 +223,18 @@ public class UserService {
 					
 					ServiceLayer serviceLayer = ServiceLayer.getInstance();
 					serviceLayer.userInsert(user);
+					
+					JOptionPane.showMessageDialog(null, "등록되었습니다.");
+					
+					ta.setText("");
+					String[][] arr = serviceLayer.userList();
+					
+					ta.append("number"+"\t"+"name"+"\t"+"birth date"+"\t"+"phone number"+"\n");
+					ta.append("----------------------------------------------------------------------------------------------------------\n");
+					
+					for (int i = 0; i < arr.length; i++) {
+						ta.append(arr[i][0]+" \t "+ arr[i][1]+" \t "+arr[i][2]+" \t "+arr[i][3]+" \t "+ "\n");
+					}
 									
 				}
 			}
@@ -238,6 +251,19 @@ public class UserService {
 				else {
 					ServiceLayer serviceLayer = ServiceLayer.getInstance();
 					serviceLayer.update(Integer.parseInt(idValue), numberValue);
+					
+					JOptionPane.showMessageDialog(null, "수정이 완료되었습니다.");
+					
+					ta.setText("");
+					String[][] arr = serviceLayer.userList();
+					
+					ta.append("number"+"\t"+"name"+"\t"+"birth date"+"\t"+"phone number"+"\n");
+					ta.append("----------------------------------------------------------------------------------------------------------\n");
+					
+					for (int i = 0; i < arr.length; i++) {
+						ta.append(arr[i][0]+" \t "+ arr[i][1]+" \t "+arr[i][2]+" \t "+arr[i][3]+" \t "+ "\n");
+					}
+					
 				}
 			}
 		});
@@ -252,6 +278,18 @@ public class UserService {
 				else {
 					ServiceLayer serviceLayer = ServiceLayer.getInstance();
 					serviceLayer.delete(Integer.parseInt(idValue));
+					
+					JOptionPane.showMessageDialog(null, "삭제가 완료되었습니다.");
+					
+					ta.setText("");
+					String[][] arr = serviceLayer.userList();
+					
+					ta.append("number"+"\t"+"name"+"\t"+"birth date"+"\t"+"phone number"+"\n");
+					ta.append("----------------------------------------------------------------------------------------------------------\n");
+					
+					for (int i = 0; i < arr.length; i++) {
+						ta.append(arr[i][0]+" \t "+ arr[i][1]+" \t "+arr[i][2]+" \t "+arr[i][3]+" \t "+ "\n");
+					}
 				}
 			}
 		});
