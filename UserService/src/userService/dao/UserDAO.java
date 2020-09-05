@@ -70,7 +70,7 @@ public class UserDAO {
 
 		try {
 			conn = getConnection();
-			pstmt = conn.prepareStatement("select * from user");
+			pstmt = conn.prepareStatement("select * from user order by id desc;");
 			rs = pstmt.executeQuery();
 				while(rs.next()) {
 					list.add(new String[] {
@@ -97,7 +97,7 @@ public class UserDAO {
 
 		try {
 			conn = getConnection();
-			pstmt = conn.prepareStatement("select * from user where name like '%"+name+"%';");
+			pstmt = conn.prepareStatement("select * from user where name like '%"+name+"%' order by id desc;");
 			rs = pstmt.executeQuery();
 				while(rs.next()) {
 					list.add(new String[] {
