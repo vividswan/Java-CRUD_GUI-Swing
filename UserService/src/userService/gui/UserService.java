@@ -1,6 +1,5 @@
 package userService.gui;
 
-import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,15 +8,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.RowFilter;
 import javax.swing.SwingConstants;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 
 import userService.serviceLayer.ServiceLayer;
 import userService.vo.UserVO;
@@ -122,6 +115,17 @@ public class UserService {
 		ta.setBounds(180, 267, 446, 301);
 		frame.getContentPane().add(ta);
 		
+		ta.setText("");
+		String[][] arr = serviceLayer.userList();
+		
+		ta.append("number"+"\t"+"name"+"\t"+"birth date"+"\t"+"phone number"+"\n");
+		ta.append("--------------------------------------------------------------------------------------------------------------\n");
+		
+		for (int i = 0; i < arr.length; i++) {
+			ta.append(arr[i][0]+" \t "+ arr[i][1]+" \t "+arr[i][2]+" \t "+arr[i][3]+" \t "+ "\n");
+		}
+		
+		
 		modifyNum = new JTextField();
 		modifyNum.setBounds(401, 127, 116, 24);
 		frame.getContentPane().add(modifyNum);
@@ -177,7 +181,7 @@ public class UserService {
 				String[][] arr = serviceLayer.userList();
 				
 				ta.append("number"+"\t"+"name"+"\t"+"birth date"+"\t"+"phone number"+"\n");
-				ta.append("----------------------------------------------------------------------------------------------------------\n");
+				ta.append("--------------------------------------------------------------------------------------------------------------\n");
 				
 				for (int i = 0; i < arr.length; i++) {
 					ta.append(arr[i][0]+" \t "+ arr[i][1]+" \t "+arr[i][2]+" \t "+arr[i][3]+" \t "+ "\n");
@@ -198,7 +202,7 @@ public class UserService {
 				if(arr.length==0) JOptionPane.showMessageDialog(null, "해당되는 사용자가 없습니다.");
 				
 				ta.append("number"+"\t"+"name"+"\t"+"birth date"+"\t"+"phone number"+"\n");
-				ta.append("----------------------------------------------------------------------------------------------------------\n");
+				ta.append("--------------------------------------------------------------------------------------------------------------\n");
 				
 				for (int i = 0; i < arr.length; i++) {
 					ta.append(arr[i][0]+" \t "+ arr[i][1]+" \t "+arr[i][2]+" \t "+arr[i][3]+" \t "+ "\n");
@@ -258,7 +262,7 @@ public class UserService {
 					String[][] arr = serviceLayer.userList();
 					
 					ta.append("number"+"\t"+"name"+"\t"+"birth date"+"\t"+"phone number"+"\n");
-					ta.append("----------------------------------------------------------------------------------------------------------\n");
+					ta.append("--------------------------------------------------------------------------------------------------------------\n");
 					
 					for (int i = 0; i < arr.length; i++) {
 						ta.append(arr[i][0]+" \t "+ arr[i][1]+" \t "+arr[i][2]+" \t "+arr[i][3]+" \t "+ "\n");
@@ -285,7 +289,7 @@ public class UserService {
 					String[][] arr = serviceLayer.userList();
 					
 					ta.append("number"+"\t"+"name"+"\t"+"birth date"+"\t"+"phone number"+"\n");
-					ta.append("----------------------------------------------------------------------------------------------------------\n");
+					ta.append("--------------------------------------------------------------------------------------------------------------\n");
 					
 					for (int i = 0; i < arr.length; i++) {
 						ta.append(arr[i][0]+" \t "+ arr[i][1]+" \t "+arr[i][2]+" \t "+arr[i][3]+" \t "+ "\n");
